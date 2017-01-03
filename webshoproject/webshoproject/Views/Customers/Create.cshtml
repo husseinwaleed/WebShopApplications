@@ -1,0 +1,69 @@
+﻿ 
+
+@{
+    ViewBag.Title = "Create";
+    var emaill = (string)TempData["TDFriend"];
+}
+<h2>Create</h2>
+
+@Html.AntiForgeryToken()
+
+<div>
+
+    <form action="Create" method="post">
+        First name:<br>
+        <input type="text" name="firstname" value="">
+        <br>
+        Last name:<br>
+        <input type="text" name="lastname" >
+        <br>
+        phone:<br>
+        <input type="text" name="phone">
+        <br>
+        Fdeliveryadress:<br>
+        <input type="text" name="deliveryadress">
+        <br>
+        deliverycity:<br>
+        <input type="text" name="deliverycity"  >
+        <br>
+        billingadress:<br>
+        <input type="text" name="billingadress" >
+        <br>
+        billingcity:<br>
+        <input type="text" name="billingcity" >
+        <br>
+        <input hidden type="text" name="email" value="@emaill">
+        <br><br>
+        
+        <input type="submit" value="Submit">
+    </form>
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+

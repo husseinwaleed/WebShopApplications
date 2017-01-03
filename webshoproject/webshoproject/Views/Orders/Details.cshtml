@@ -1,0 +1,48 @@
+﻿@model webshoproject.Models.Order
+
+@{
+    ViewBag.Title = "Details";
+     
+   var price= ViewBag.orderrawprice;
+   var  carfactory= ViewBag.orderrarwfactory;
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Order</h4>
+    <hr />
+
+<table>
+
+    <tr>
+        <th>Order Id </th>
+        <th>Order Date</th>
+        <th>Customer First Name</th>
+        <th>Total Price</th>
+        <th>Car</th>
+    </tr>
+
+
+    <tr>
+        <td>@Html.DisplayFor(model => model.Id)</td>
+        <td>@Html.DisplayFor(model => model.orderdate)</td>
+        <td>@Html.DisplayFor(model => model.customer.firstname)</td>
+        <td>@price</td>
+        <td>@carfactory</td>
+    </tr>
+
+
+
+</table>
+
+</div>
+@if (User.IsInRole("Admin"))
+{
+<p>
+
+    @Html.ActionLink("Edit", "Edit", "OrderRows", new { id = @Model.Id }, null)||
+
+    @Html.ActionLink("Back to List", "Index")
+</p>
+}

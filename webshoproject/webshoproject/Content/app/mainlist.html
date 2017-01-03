@@ -1,0 +1,51 @@
+﻿
+
+<div class="w3-container">
+
+    <h3>Cars</h3>
+    
+    <table class="w3-table w3-bordered w3-striped">
+        <tr>
+
+            <th>factory</th>
+            <th>model</th>
+            <th>Details</th>
+
+        </tr>
+        <tr ng-repeat="car in carlist">
+
+            <td>{{car.factory}}</td>
+            <td>{{car.model}}</td>
+            <td><a href="#/car/{{car.Id}}">Details</a></td>
+
+        </tr>
+    </table>
+   
+
+
+</div>
+
+
+ <!--public int Id { get; set; }
+        public string factory { get; set; }
+        public string model { get; set; }
+        public string type { get; set; }
+        public string color { get; set; }
+        public int price { get; set; }
+        public virtual List<OrderRow>
+    orderrow { get; set; }
+    public byte[] Image { get; set; }-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+

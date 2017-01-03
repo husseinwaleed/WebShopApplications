@@ -1,0 +1,52 @@
+﻿
+@model webshoproject.Models.shoppingcart
+
+@{
+    ViewBag.Title = "Details";
+}
+
+
+
+<div>
+    
+ 
+    <table class="table">
+@foreach (var item in Model.car)
+{
+   <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => item.model)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => item.factory)
+        </th>
+
+         
+    </tr>
+
+
+   <tr>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.model)
+        </td>
+        <td>
+            @Html.DisplayFor(model => item.factory)
+        </td>
+</tr>
+<tr>
+            <td>
+                @Html.ActionLink("Go To Kassa", "GoToKassa", new { id = item.Id }) |
+                @Html.ActionLink("item details", "itemdetails", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Deleteitem", new { id = item.Id }) |
+            </td>
+        </tr>
+}
+         
+    </table>
+
+</div> 
+
+
+  

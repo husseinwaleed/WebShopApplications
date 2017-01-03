@@ -1,0 +1,34 @@
+﻿
+@{
+    ViewBag.Title = "UploadImages";
+    var carid = Convert.ToInt16(TempData["carid"]);
+    
+}
+ 
+
+<h2>UploadImages</h2>
+
+
+<h2>@carid</h2>
+
+ 
+
+@using (Html.BeginForm("saveimage", "uploadimages", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="row">
+        <form action="saveimage" method="post">
+            <span class="span4">
+                <input type="file" name="uploadImages" class="input-files" />
+            </span>
+            <span class="span4">
+                <input hidden type="number" name="carid" value="@carid">
+            </span>
+            <span class="span2">
+                <input type="submit" name="button" value="Upload" class="btn btn-upload" />
+            </span>
+</form>
+        
+</div>
+}

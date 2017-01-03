@@ -1,0 +1,134 @@
+ 
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+       
+
+
+
+
+.headerlogo{
+
+    background-color: blueviolet;
+            border: 1px solid black;
+            height:100px;
+           font-family:sans-serif;
+           text-align:center;
+            color:white;
+            max-width:100%;
+            font-size:18px;
+            
+            padding: 10px 10px;
+
+
+
+}
+
+
+
+
+  footer {
+            background-color: blueviolet;
+            border: 1px solid black;
+            height:30px;
+           font-family:sans-serif;
+           text-align:center;
+            color:white;
+            max-width:100%;
+            font-size:18px;
+            
+            padding: 10px 10px;
+
+        }
+        body {
+            position: relative;
+            background-color:blanchedalmond;
+        }
+
+        #articlesection {
+            padding-top: 50px;
+            height: 500px;
+           
+          
+          
+        }
+
+        #myScrollspy{
+            width:150px;
+        }
+
+        /*#picsection {
+            padding-top: 50px;
+            height: 500px;
+           
+           
+        }*/
+
+        #contactsection {
+            padding-top: 50px;
+            height: 500px;
+            
+           
+        }
+        .col-lg-2{
+            max-height:100%;
+            padding-top:5%;
+          
+           
+
+        }
+    
+.dropbtn {
+
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropbtn:hover, .dropbtn:focus {
+    background-color: #3e8e41;
+}
+
+.dropdown {
+    float: right;
+    position: relative;
+    display: inline-block;
+    
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 100px;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    right: 0;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown a:hover {background-color: #f1f1f1}
+
+.show {display:block;}
+</style>
