@@ -1,0 +1,44 @@
+﻿
+
+
+<div class="w3-container" ng-app="myApp" ng-controller="myCtrl">
+
+    <h3>Cars</h3>
+    
+
+        
+    
+
+    <table class="w3-table w3-bordered w3-striped">
+        <tr>
+
+            <th>factory</th>
+            <th>model</th>
+            <th>id</th>
+            <th>Details</th>
+
+        </tr>
+
+
+
+        <tr ng-repeat="car in carlist">
+
+            <td>{{car.carmodel}}</td>
+            <td>{{car.carfactory}}</td>
+            <td>{{car.id}}</td>
+
+            <td><a href="#/Views/Cars/{{car.id}}"></a></td>
+        </tr>
+    </table>
+
+
+
+</div>
+
+
+
+
+
+
+
+

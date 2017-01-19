@@ -31,7 +31,7 @@
             <div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav">
-                        <li>@Html.ActionLink("Cars", "Index", "Cars")</li>
+                        <li>@Html.ActionLink("Cars", "UserIndex", "Cars")</li>
                         <li>@Html.ActionLink("My Shopping Cart", "Details", "shoppingcarts")</li>
                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
                         <li>@Html.ActionLink("About", "About", "Home")</li>
@@ -61,14 +61,16 @@
         <footer>
             <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
         </footer>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
+    
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/angularjs")
 
     @RenderSection("scripts", required: false)
+     
     <script src="~/Content/app/myApp.js"></script>
+   
+    
 
 
 

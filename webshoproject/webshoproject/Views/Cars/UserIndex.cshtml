@@ -4,11 +4,74 @@
 
 <h2>Index</h2>
 
+ 
 
-<div ng-app="myApp">
 
-    <div ng-view></div>
+<div class="w3-container" ng-app="myApp" ng-controller="myCtrl">
+   
+
+    <h3>Cars</h3>
+
+
+
+    <table ng-init="hidelist=false"  ng-hide="hidelist" class="w3-table w3-bordered w3-striped">
+        <tr>
+
+            <th>factory</th>
+            <th>model</th>
+            <th>id</th>
+            <th>Details</th>
+
+        </tr>
+
+        <tr ng-repeat="car in carlist" >
+
+            <td>{{car.carmodel}}</td>
+            <td>{{car.carfactory}}</td>
+            <td >{{car.id}}</td>
+            <td><button ng-click="details($index)">Details</button></td>
+           
+            
+        </tr>
+    </table>
+
+    <table   ng-show="hidelist" class="w3-table w3-bordered w3-striped">
+        <tr>
+
+            <th>factory</th>
+            <th>model</th>
+            <th>id</th>
+            <th>type</th>
+            <th>color</th>
+            <th>price</th>
+
+        </tr>
+
+        <tr>
+
+            <td>{{selectedcar.carmodel}}</td>
+            <td>{{selectedcar.carfactory}}</td>
+            <td>{{selectedcar.id}}</td>
+            <td>{{selectedcar.cartype}}</td>
+            <td>{{selectedcar.carcolor}}</td>
+            <td>{{selectedcar.carprice}}</td>
+            <td><button ng-click="gotolist()">Back To Main List</button></td>
+            <td><button ng-click="Addtocart()">Add To Cart</button></td>
+
+            @*<td>@Html.ActionLink("Back To Main List", "UserIndex", "Cars", null, null)</td>*@
+         
+
+
+        </tr>
+    </table>
+
+
 </div>
 
 
- 
+
+
+
+
+
+

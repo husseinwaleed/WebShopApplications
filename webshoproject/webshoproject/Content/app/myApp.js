@@ -1,46 +1,49 @@
-﻿(function () {
+﻿
+(function () {
 	'use strict';
 
 	var myApp = angular.module('myApp', [
-            "ngRoute" // <-- This is needed to use AngularJS Routing!  
+             
 	]);
-	myApp.controller('DetailsController', function ($scope, $http, $routeParams, $location) { // <-- This is needed to handle extract/read parameters out of url
-		$scope.params = $routeParams;
-		 
-		$http.get("/Cars/detail/" + $scope.params.Id)
-            .then(function (response) {
-            	$scope.car = response.data;
-            });
 
-	});
-	
-
-
-
-
-		myApp.controller('myCtrl', function ($scope, $http) {
-		
+    
+	myApp.controller('myCtrl', function ($scope, $http,$location) {
+	      
 			$http.get("/Cars/Getdatalist")
 			   .then(function (response) {
-			   	$scope.carlist = response.data;
-			   });
-		});
-		myApp.config(function ($routeProvider) {
-			$routeProvider
-				 
-				.when('/car/:Id', {
-					templateUrl: '/Content/app/Details.html',
-					controller: 'DetailsController'
-				})
-			  .when('/Index', {
-			  	templateUrl: '/Content/app/mainlist.html',
-			  	controller: 'myCtrl'
-			  })
+			    $scope.carlist = response.data;
+			      });
+	    cash: false;
+		    $scope.details = function (x) {
+			 $scope.hidelist = true;
+			 $scope.selectedcar = $scope.carlist[x];
+			 $scope.selectedid = $scope.selectedcar.id;
+			};
+			$scope.gotolist= function () {
+			    location.replace("http://localhost:54481/Cars/UserIndex");
+		
+			};
+			$scope.Addtocart = function () {
+			    var parameters = {
+			        selectedcar: $scope.selectedid
+			    };
+			    var config = {
+			        params: parameters
+			    };
+			    $http.get("/Cars/addtocart",config)
+                  .then(function (response) {
+                      $scope.feedback = response.data;
+                      if ($scope.feedback == false) {
+                          location.replace("http://localhost:54481/Account/Login");
+                      };
+                      if ($scope.feedback == true) {
+                          $scope.hidelist = false;
+                        
+                      };
+                  });
 
-			.otherwise({
-				redirectTo: '/Index'
+			};
+	});
 
-			});
 
-		});
 	})();

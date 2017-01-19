@@ -10,6 +10,16 @@ using webshoproject.Models;
 
 namespace webshoproject.Controllers
 {
+    public class carangular
+    {
+       public int id { get; set; }
+         public string carmodel { get; set; }
+        public   string carfactory { get; set; }
+        public string cartype { get; set; }
+        public string carcolor { get; set; }
+        public int carprice { get; set; }
+
+    }
     public class CarsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -28,27 +38,32 @@ namespace webshoproject.Controllers
 
         // Get:cars list
 
-        //public JsonResult Getdatalist()
-        //{
-
-        //    var carlist = db.cars.ToList();
-        //    return Json(carlist, JsonRequestBehavior.AllowGet);
-        //}
-
-        //// Get:cars list
-
-        //public JsonResult detail(int id)
-        //{
-
-        //    Car car = db.cars.Find(id);
-
-        //    return Json(car, JsonRequestBehavior.AllowGet);
-        //}
+        public JsonResult Getdatalist()
+        {
+            List<carangular> carlist = new List<carangular>();
 
 
-        // GET: Cars/Details/5
+            var databaselist = db.cars.ToList();
+            foreach(var item in databaselist)
+            {
+                carangular care = new carangular();
+                care.id = item.Id;
+                care.carfactory = item.factory;
+                care.carmodel = item.model;
+                care.cartype = item.type;
+                care.carcolor = item.color;
+                care.carprice = item.price;
+                carlist.Add(care);
+            }
+         
+            return Json(carlist, JsonRequestBehavior.AllowGet);
+        }
 
-        public ActionResult Details(int? id)
+    
+
+    // GET: Cars/Details/5
+
+    public ActionResult Details(int? id)
         {
             if (id == null && Session["carid"] == null)
             {
@@ -79,14 +94,17 @@ namespace webshoproject.Controllers
             return File(car.Image, "image/jpg", string.Format("{0}.jpg", id));
         }
 
-        [Authorize]
-        public ActionResult addtocart(int? id)
+     
+        public JsonResult addtocart(int? selectedcar)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            
+            if  (Session["user"] == null)
+              {
+               
+                return Json(false, JsonRequestBehavior.AllowGet);
             }
-           Car car = db.cars.Find(id);
+           
+           Car car = db.cars.Where(p =>p.Id== selectedcar).SingleOrDefault();
             string username = Convert.ToString(Session["user"]);
 
             ApplicationUser user = db.Users.Where(p => p.UserName== username).SingleOrDefault();
@@ -95,9 +113,28 @@ namespace webshoproject.Controllers
             shoppingcart cart = db.shoppingcart.Where(p => p.customer.Id == cus.Id).SingleOrDefault();
 
             cart.car.Add(car);
+            db.SaveChanges();
+            return Json(true, JsonRequestBehavior.AllowGet); ;
+        }
+
+        public ActionResult addcart(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Car car = db.cars.Find(id);
+            string username = Convert.ToString(Session["user"]);
+
+            ApplicationUser user = db.Users.Where(p => p.UserName == username).SingleOrDefault();
+            Customer cus = db.customers.Where(p => p.email == user.Email).SingleOrDefault();
+
+            shoppingcart cart = db.shoppingcart.Where(p => p.customer.Id == cus.Id).SingleOrDefault();
+
+            cart.car.Add(car);
 
             db.SaveChanges();
-            return View("Index",db.cars.ToList());
+            return View("UserIndex");
         }
 
 
@@ -197,6 +234,11 @@ namespace webshoproject.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+
         }
+        
+
+
+
     }
 }
